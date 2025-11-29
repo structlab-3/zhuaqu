@@ -1,0 +1,34 @@
+{
+  "language": "en",
+  "source": {
+    "type": "file_html",
+    "path": "sample_forum.html",
+    "name": "demo_forum"
+  },
+  "rules": [
+    {
+      "id": "amazon_price_need",
+      "description": "用户在问 Amazon 价格/监控相关需求",
+      "enabled": true,
+      "conditions": [
+        { "type": "contains_any", "field": "content", "values": ["amazon", "价格", "price", "monitor"] }
+      ],
+      "template": "reply_amazon_en",
+      "target_lang": "en"
+    },
+    {
+      "id": "general_help",
+      "description": "泛用求助帖",
+      "enabled": true,
+      "conditions": [
+        { "type": "contains", "field": "content", "value": "help" }
+      ],
+      "template": "reply_generic_en",
+      "target_lang": "en"
+    }
+  ],
+  "templates": {
+    "reply_amazon_en": "Hi, I saw your post '{title}'. I maintain an Amazon price tracker with proxy + Selenium. I can monitor {url} or a list of ASINs, and send alerts on drops.",
+    "reply_generic_en": "Hi, thanks for reaching out about '{title}'. I can help with data collection/monitoring pipelines. Can you share more details or sample URLs?"
+  }
+}

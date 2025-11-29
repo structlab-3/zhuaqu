@@ -1,0 +1,28 @@
+{
+  "language": "zh",
+  "repeat": false,
+  "interval_seconds": 900,
+  "max_cycles": 1,
+  "min_matches": 0,
+  "source": {
+    "type": "search_engine",
+    "engine": "duckduckgo",
+    "queries": ["论文 辅导", "thesis help"],
+    "max_results": 5
+  },
+  "rules": [
+    {
+      "id": "thesis_need",
+      "description": "论文/辅导相关需求",
+      "enabled": true,
+      "conditions": [
+        { "type": "contains_any", "field": "content", "values": ["论文", "thesis", "paper", "辅导", "help", "writing"] }
+      ],
+      "template": "reply_thesis_zh",
+      "target_lang": "zh"
+    }
+  ],
+  "templates": {
+    "reply_thesis_zh": "你好，我看到你提到论文/辅导相关需求（{title}）。我可以提供数据采集/监控/自动化方案，先聊聊你的具体方向和期望吧。"
+  }
+}

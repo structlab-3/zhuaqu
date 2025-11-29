@@ -1,0 +1,36 @@
+{
+  "language": "zh",
+  "source": {
+    "type": "browser_search",
+    "name": "browser_demo",
+    "search_page_url": "https://example.com/search",  // 改成真实可搜索的页面
+    "queries": ["论文", "thesis"],
+    "selectors": {
+      "search_input": "input[name='q']",           // 搜索框 CSS 选择器
+      "search_button": "",                         // 提交按钮选择器，可留空用回车提交
+      "wait_for": "article.post",                  // 结果加载完等待的元素
+      "container": "article.post",                 // 结果条目容器
+      "title": "h2",
+      "content": "p.content",
+      "link": "a.permalink",
+      "id_attr": "data-id",
+      "created_at_attr": "data-created-at",
+      "lang_attr": "data-lang"
+    }
+  },
+  "rules": [
+    {
+      "id": "thesis_need",
+      "description": "论文辅导/需求相关",
+      "enabled": true,
+      "conditions": [
+        { "type": "contains_any", "field": "content", "values": ["论文", "辅导", "thesis", "paper"] }
+      ],
+      "template": "reply_thesis_zh",
+      "target_lang": "zh"
+    }
+  ],
+  "templates": {
+    "reply_thesis_zh": "你好，我看到你提到论文相关需求（{title}）。我可以提供数据采集/监控/自动化方案，先聊聊你的具体方向和期望吧。"
+  }
+}

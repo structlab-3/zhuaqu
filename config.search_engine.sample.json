@@ -1,0 +1,48 @@
+{
+  "language": "zh",
+  "repeat": false,
+  "interval_seconds": 10,
+  "max_cycles": 1,
+  "min_matches": 0,
+  "source": {
+    "type": "browser_search",
+    "name": "xiaohongshu",
+    "search_page_url": "https://www.xiaohongshu.com/search_result?keyword={query}&type=51",
+    "queries": [
+      "论文 求助",
+      "帮忙写论文",
+      "论文 降重"
+    ],
+    "user_data_dir": "C:\\Users\\CAI\\AppData\\Local\\Google\\Chrome\\User Data",
+    "profile_directory": "Default",
+    "wait_login": false,
+    "selectors": {
+      "search_input": "input[placeholder*='搜索']",
+      "search_button": "",
+      "wait_for": "div.note-item, a[href*='/explore/']",
+      "container": "div.note-item",
+      "title": ".title, .recommend-reason-text",
+      "content": ".desc, .recommend-reason-text, .title",
+      "link": "a[href*='/explore/']",
+      "id_attr": "data-note-id",
+      "created_at_attr": "",
+      "lang_attr": ""
+    }
+  },
+  "rules": [
+    {
+      "id": "thesis_help",
+      "description": "论文求助",
+      "enabled": true,
+      "conditions": [
+        { "type": "contains_any", "field": "content", "values": ["论文", "thesis", "paper"] },
+        { "type": "contains_any", "field": "content", "values": ["求助", "帮忙", "help"] }
+      ],
+      "template": "reply_thesis_zh",
+      "target_lang": "zh"
+    }
+  ],
+  "templates": {
+    "reply_thesis_zh": "你好，我看到你提到论文写作相关求助（{title}）。"
+  }
+}

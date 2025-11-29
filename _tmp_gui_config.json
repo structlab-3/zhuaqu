@@ -1,0 +1,65 @@
+{
+  "language": "zh",
+  "repeat": false,
+  "interval_seconds": 600,
+  "max_cycles": 1,
+  "min_matches": 0,
+  "source": {
+    "type": "search_engine",
+    "engine": "duckduckgo",
+    "site": "duckduckgo",
+    "queries": [
+      "论文辅导"
+    ],
+    "max_results": 10
+  },
+  "rules": [
+    {
+      "id": "thesis_help",
+      "description": "论文求助/写作问题类需求，排除机构/平台",
+      "enabled": true,
+      "conditions": [
+        {
+          "type": "contains_any",
+          "field": "content",
+          "values": [
+            "论文",
+            "thesis",
+            "paper"
+          ]
+        },
+        {
+          "type": "contains_any",
+          "field": "content",
+          "values": [
+            "求助",
+            "帮忙",
+            "怎么写",
+            "怎么办",
+            "问题",
+            "question",
+            "help",
+            "降重"
+          ]
+        },
+        {
+          "type": "not_contains_any",
+          "field": "content",
+          "values": [
+            "机构",
+            "平台",
+            "官网",
+            "公司",
+            "服务",
+            "代写"
+          ]
+        }
+      ],
+      "template": "reply_thesis_zh",
+      "target_lang": "zh"
+    }
+  ],
+  "templates": {
+    "reply_thesis_zh": "你好，我看到你提到论文/写作相关求助（{title}）。我可以提供数据采集/监控/自动化方案，先聊聊你的具体方向和期望吧。"
+  }
+}
